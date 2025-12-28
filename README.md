@@ -104,6 +104,14 @@ Final_project_ICBHI-2017_Yvonne
 │── Final_Project_Yvonne_ICBHI_2017_Respiratory_Sound_Classification (1).ipynb
 │── README.md
 
+## Project Report
+
+The full MSc project report is included in this repository and provides
+a detailed academic discussion of the background, methodology, experiments,
+results, ethical considerations, and conclusions of this work.
+
+- `Final_Project__Yvonne_Musinguzi.pdf`
+
 ## Author
 
 **Yvonne Musinguzi**  
