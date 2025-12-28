@@ -110,7 +110,7 @@ The full MSc project report is included in this repository and provides
 a detailed academic discussion of the background, methodology, experiments,
 results, ethical considerations, and conclusions of this work.
 
-- `Final_Project__Yvonne_Musinguzi.pdf`
+- `Final_Project__Report_Yvonne_Musinguzi.pdf`
 
 ## Author
 
