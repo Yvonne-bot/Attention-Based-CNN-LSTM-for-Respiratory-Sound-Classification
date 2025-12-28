@@ -2,28 +2,17 @@
 
 ## Project Overview
 
-Respiratory sound analysis plays a critical role in the early detection of conditions such as asthma, pneumonia, and chronic obstructive pulmonary disease (COPD). Despite advances in deep learning, many automated respiratory sound classification systems struggle with real-world challenges including environmental noise, class imbalance, and limited model interpretability. These limitations reduce clinical trust and hinder adoption, particularly in low-resource healthcare settings.
+Respiratory sound analysis plays a critical role in the early detection of conditions such as asthma, pneumonia, and chronic obstructive pulmonary disease (COPD). Despite advances in deep learning, many automated respiratory sound classification systems struggle with real-world challenges including environmental noise, class imbalance, and limited interpretability. These limitations reduce clinical trust and hinder adoption, particularly in low-resource healthcare settings.
 
-This project addresses these challenges by developing and evaluating an **attention-based CNN-LSTM hybrid model** for respiratory sound classification. The model is designed to improve **classification accuracy**, **robustness to noise**, and **model interpretability**, using targeted data augmentation and explainable AI techniques.
+This project develops and evaluates an **attention-based CNN-LSTM hybrid model** for respiratory sound classification. The solution targets three practical requirements for clinical-ready ML: **strong classification performance**, **robustness to noise**, and **transparent explanations** using explainable AI techniques.
 
-This repository contains the implementation associated with my MSc Data Science final project at Coventry University :contentReference[oaicite:0]{index=0}.
+This repository contains the implementation associated with my MSc Data Science final project at Coventry University. :contentReference[oaicite:1]{index=1}
 
 ---
 
 ## Research Aim
 
-To enhance the accuracy, robustness, and interpretability of respiratory sound classification systems by implementing and evaluating an attention-based CNN-LSTM model, supported by data augmentation and LIME explainability, for classifying respiratory cycles as **normal**, **crackle**, **wheeze**, or **both**.
-
----
-
-## Key Objectives
-
-- Preprocess and segment respiratory sound recordings at the respiratory cycle level  
-- Extract MFCC features for baseline models and log-Mel spectrograms for deep learning models  
-- Implement and compare multiple model architectures, from baseline MLPs to CNN-LSTM-Attention models  
-- Address class imbalance using class weighting and targeted noise-based data augmentation  
-- Evaluate model performance using accuracy, macro-F1 score, ROC-AUC, and confusion matrices  
-- Apply LIME to improve transparency and interpretability of model predictions  
+To enhance the accuracy, robustness, and interpretability of respiratory sound classification systems by implementing and evaluating an attention-based CNN-LSTM model, supported by targeted data augmentation and LIME explainability, for classifying respiratory cycles as **normal**, **crackle**, **wheeze**, or **both**. :contentReference[oaicite:2]{index=2}
 
 ---
 
@@ -32,116 +21,94 @@ To enhance the accuracy, robustness, and interpretability of respiratory sound c
 - **Dataset:** ICBHI 2017 Respiratory Sound Database  
 - **Recordings:** 920 audio files from 126 subjects  
 - **Extracted segments:** 6,898 respiratory cycles  
-- **Classes:**  
-  - Normal  
-  - Crackle  
-  - Wheeze  
-  - Both (crackle and wheeze)
+- **Classes:** Normal, Crackle, Wheeze, Both (crackle+wheeze) :contentReference[oaicite:3]{index=3}
 
-### Dataset Characteristics
+### Dataset Notes
 
 - Clinically annotated respiratory cycles  
-- Significant class imbalance, with wheeze and combined classes underrepresented  
-- Controlled recording environment with limited background noise  
-
-These characteristics informed the use of augmentation and class weighting strategies.
+- Significant class imbalance (especially the “Both” class)  
+- Controlled recording conditions; robustness tested through noise augmentation :contentReference[oaicite:4]{index=4}
 
 ---
 
-## Methodology
+## Methodology Summary
 
-### Data Preprocessing
-
-- Segmentation of full audio recordings into individual respiratory cycles  
-- Resampling to 16 kHz and standardisation to fixed-length segments  
-- Exploratory data analysis of duration, class distribution, and acoustic patterns  
+### Preprocessing
+- Matched audio files with annotation files
+- Segmented recordings into respiratory cycles
+- Resampled audio to a consistent sampling rate and standardised segments to fixed length for model input :contentReference[oaicite:5]{index=5}
 
 ### Feature Extraction
+- **MFCCs** for baseline model (MLP)
+- **Log-Mel spectrograms** for CNN / CNN-LSTM / CNN-LSTM-Attention models :contentReference[oaicite:6]{index=6}
 
-- **MFCCs** for baseline Multilayer Perceptron (MLP) model  
-- **Log-Mel spectrograms** for CNN, CNN-LSTM, and CNN-LSTM-Attention models  
+### Models Implemented
+- Baseline MLP (MFCC input)
+- CNN (spectrogram input)
+- CNN-LSTM (spectrogram input)
+- CNN-LSTM with Attention (final proposed model) :contentReference[oaicite:7]{index=7}
 
-### Model Architectures
-
-- Baseline MLP (MFCC input)  
-- Convolutional Neural Network (CNN)  
-- CNN-LSTM hybrid model  
-- Attention-based CNN-LSTM model (final proposed architecture)  
-
-### Data Augmentation and Imbalance Handling
-
-- Class weighting during training  
-- Spectrogram-based noise injection to simulate real-world acoustic variability  
+### Imbalance Handling and Robustness
+- Class weighting to improve minority-class learning
+- Spectrogram-based noise injection to simulate real-world acoustic variability :contentReference[oaicite:8]{index=8}
 
 ### Explainability
-
-- Local Interpretable Model-agnostic Explanations (LIME) applied to the final model  
-- Visual explanations generated to highlight time–frequency regions influencing predictions  
+- LIME used to generate local, per-sample explanations highlighting the most influential time–frequency regions behind predictions :contentReference[oaicite:9]{index=9}
 
 ---
 
-## Evaluation Metrics
+## Evaluation
 
 Models were evaluated using:
-
-- Accuracy  
-- Precision, Recall, and Macro F1-score  
-- Confusion matrices (per class)  
-- ROC and AUC  
-
-Evaluation focused on both overall performance and minority-class sensitivity.
+- Accuracy
+- Precision, Recall, Macro F1-score
+- Confusion matrices (per class)
+- ROC and AUC :contentReference[oaicite:10]{index=10}
 
 ---
 
 ## Key Findings
 
-- CNN-LSTM models outperformed baseline MLP and CNN-only architectures  
-- The attention mechanism improved the model’s ability to focus on diagnostically relevant regions  
-- Noise-based data augmentation increased robustness to acoustic variability  
-- LIME explanations provided meaningful insights into model decision-making, supporting clinical interpretability  
-
-Overall, the attention-based CNN-LSTM model achieved the best balance between **performance**, **robustness**, and **explainability**.
+- CNN-LSTM models outperformed the baseline MLP and the CNN-only architecture
+- Attention improved the model’s focus on diagnostically relevant regions in the spectrogram
+- Noise augmentation improved robustness to acoustic variability
+- LIME provided interpretable explanations to support transparency and clinical trust :contentReference[oaicite:11]{index=11}
 
 ---
+## How to Run the Project
 
-## Ethical Considerations
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Yvonne-bot/Final_project_ICBHI-2017_Yvonne.git
+   cd Final_project_ICBHI-2017_Yvonne
+Open the notebooks using Google Colaboratory (recommended) or Jupyter Notebook.
 
-- The dataset is publicly available, anonymised, and ethically approved  
-- Ethical approval for this project was granted by Coventry University  
-- Models are intended as decision-support tools and not as replacements for clinical judgement  
-- Interpretability and fairness were prioritised in line with emerging medical AI regulations  
+Run the notebooks in the following order:
 
----
+Final_project_Yvonne_ICBHI_2017_EDA.ipynb
+(Dataset exploration, segmentation checks, and visual analysis)
 
-## Tools and Technologies
+Final_Project_Yvonne_ICBHI_2017_Respiratory_Sound_Classification.ipynb
+(Main modelling pipeline)
 
-- Python  
-- TensorFlow / Keras  
-- Librosa  
-- NumPy, Pandas  
-- Scikit-learn  
-- Matplotlib, Seaborn  
-- LIME  
-- Google Colaboratory (GPU-enabled)  
+Final_Project_Yvonne_ICBHI_2017_Respiratory_Sound_Classification (1).ipynb
+(Additional experiments and final model evaluation)
 
----
+Note:
+The ICBHI 2017 dataset is not included in this repository due to licensing restrictions.
+Please download it from the official source and update file paths in the notebooks accordingly.
 
-## Repository Structure
-
-```
-Respiratory-Sound-Classification
-│── notebooks / scripts (model training and evaluation)
-│── data (ICBHI 2017 dataset – not included due to licensing)
-│── figures (spectrograms, confusion matrices, ROC curves)
+Repository Structure
+scss
+Copy code
+Final_project_ICBHI-2017_Yvonne
+│── Final_project_Yvonne_ICBHI_2017_EDA.ipynb
+│── Final_Project_Yvonne_ICBHI_2017_Respiratory_Sound_Classification.ipynb
+│── Final_Project_Yvonne_ICBHI_2017_Respiratory_Sound_Classification (1).ipynb
 │── README.md
-```
-
----
-
-## Author
-
-**Yvonne Musinguzi**  
-MSc Data Science  
-Coventry University  
+Author
+Yvonne Musinguzi
+MSc Data Science
+Coventry University
 
 Supervisor: Dr. Daniyal Haider
